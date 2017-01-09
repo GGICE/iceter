@@ -1,0 +1,8 @@
+{
+  "presets": [
+    ["env", {
+       "chrome": 52,
+       "safari": 9
+    }]
+  ]
+}
