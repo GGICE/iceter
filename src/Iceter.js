@@ -9,7 +9,12 @@ class Iceter {
   }
 
   init() {
+    this.selection = window.getSelection()
     this._initEl()
+  }
+
+  getRange() {
+    return this.selection.getRangeAt(0)
   }
 
   _initEl() {
@@ -17,19 +22,29 @@ class Iceter {
 
     editorWrap.className = 'editor-wrap'
     editorWrap.setAttribute('contenteditable', true)
-    editorWrap.appendChild(document.createTextNode('享受书写！'))
+    editorWrap.innerHTML = '<div>享受书写！</div>'
     this.El.appendChild(editorWrap)
     this.editorEl = this.El.querySelector('.editor-wrap')
     this.editorEl.focus()
     this._buildEvent()
   }
 
+
   _buildEvent() {
     this.editorEl.addEventListener('keydown', this._onKeyDown)
+    document.addEventListener('selectionchange', (e) => this._onSelectionChange(e))
   }
 
-  _onKeyDown(e) {
-    window.console.log(e)
+  _onKeyDown() {
+    //Do something
+  }
+
+  _onSelectionChange() {
+    this._parse(this.selection.focusNode)
+  }
+
+  _parse() {
+
   }
 
 }
