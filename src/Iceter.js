@@ -1,4 +1,5 @@
 import './styles/main.sass'
+import Heading from './Heading'
 
 class Iceter {
   constructor(options) {
@@ -31,20 +32,33 @@ class Iceter {
 
 
   _buildEvent() {
-    this.editorEl.addEventListener('keydown', this._onKeyDown)
-    document.addEventListener('selectionchange', (e) => this._onSelectionChange(e))
+    this.editorEl.addEventListener('keydown', (e) => this._onKeyDown(e))
+    // document.addEventListener('selectionchange',
+    //   (e) => this._onSelectionChange(e))
   }
 
-  _onKeyDown() {
+  _onKeyDown(e) {
+    const key = e.code
+    var el = this.selection.focusNode
+
+    if(key === 'Space') {
+      return this._parse(el)
+    }
+    if(key === 'Enter') {
+      return this._parse(el)
+    }
     //Do something
   }
 
   _onSelectionChange() {
-    this._parse(this.selection.focusNode)
+
   }
 
-  _parse() {
-
+  _parse(el) {
+    if(!el.nodeValue) {
+      el.removeAttribute('md-type')
+    }
+    new Heading(el)
   }
 
 }
