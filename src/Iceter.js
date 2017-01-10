@@ -1,3 +1,5 @@
+import './styles/main.sass'
+
 class Iceter {
   constructor(options) {
     const { el } = options
@@ -16,24 +18,20 @@ class Iceter {
     editorWrap.className = 'editor-wrap'
     editorWrap.setAttribute('contenteditable', true)
     editorWrap.appendChild(document.createTextNode('享受书写！'))
-    this._initStyles(editorWrap)
     this.El.appendChild(editorWrap)
     this.editorEl = this.El.querySelector('.editor-wrap')
     this.editorEl.focus()
+    this._buildEvent()
   }
 
-  _initStyles(el) {
-    el.style.cssText = `
-      width: 100%;
-      height: 100%;
-      border: 1px dashed #CCC;
-      padding: 10px;
-      font-size: 14px;
-      outline: none;
-      font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-    `
+  _buildEvent() {
+    this.editorEl.addEventListener('keydown', this._onKeyDown)
   }
-  
+
+  _onKeyDown(e) {
+    window.console.log(e)
+  }
+
 }
 
 window.Iceter = Iceter
