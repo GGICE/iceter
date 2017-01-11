@@ -1,5 +1,6 @@
 import './styles/main.sass'
 import Heading from './Heading'
+import Selection from './Selection'
 
 class Iceter {
   constructor(options) {
@@ -10,12 +11,12 @@ class Iceter {
   }
 
   init() {
-    this.selection = window.getSelection()
     this._initEl()
+    this.selection = new Selection(window.getSelection())
   }
 
   getRange() {
-    return this.selection.getRangeAt(0)
+    return this.selection.getRange()
   }
 
   _initEl() {
@@ -45,7 +46,7 @@ class Iceter {
 
   _onKeyUp(e) {
     const key = e.code
-    var el = this.selection.focusNode
+    var el = this.selection.getFocusNode()
 
     if(key === 'Space') {
       return this._parse(el)
