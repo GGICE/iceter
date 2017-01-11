@@ -39,7 +39,6 @@ class Iceter {
   }
 
   _onKeyDown() {
-    //Do something
   }
 
   _onKeyUp(e) {
@@ -55,13 +54,7 @@ class Iceter {
   }
 
   _onKeyEnter() {
-    var el = this.selection.focusNode
 
-    if(el.nodeType === 3) {
-      el = el.parentNode
-    }
-
-    el.removeAttribute('md-type')
   }
 
   _onSelectionChange() {
@@ -72,7 +65,10 @@ class Iceter {
     // if(!el.nodeValue) {
     //   el.removeAttribute('md-type')
     // }
-    new Heading(el)
+    new Heading({
+      el,
+      selection: this.selection
+    })
   }
 
 }
