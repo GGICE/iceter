@@ -33,11 +33,16 @@ class Iceter {
 
   _buildEvent() {
     this.editorEl.addEventListener('keydown', (e) => this._onKeyDown(e))
-    // document.addEventListener('selectionchange',
-    //   (e) => this._onSelectionChange(e))
+    this.editorEl.addEventListener('keyup', (e) => this._onKeyUp(e))
+    document.addEventListener('selectionchange',
+      (e) => this._onSelectionChange(e))
   }
 
-  _onKeyDown(e) {
+  _onKeyDown() {
+    //Do something
+  }
+
+  _onKeyUp(e) {
     const key = e.code
     var el = this.selection.focusNode
 
@@ -45,19 +50,28 @@ class Iceter {
       return this._parse(el)
     }
     if(key === 'Enter') {
-      return this._parse(el)
+      return this._onKeyEnter()
     }
-    //Do something
+  }
+
+  _onKeyEnter() {
+    var el = this.selection.focusNode
+
+    if(el.nodeType === 3) {
+      el = el.parentNode
+    }
+
+    el.removeAttribute('md-type')
   }
 
   _onSelectionChange() {
-
+    //Do something
   }
 
   _parse(el) {
-    if(!el.nodeValue) {
-      el.removeAttribute('md-type')
-    }
+    // if(!el.nodeValue) {
+    //   el.removeAttribute('md-type')
+    // }
     new Heading(el)
   }
 

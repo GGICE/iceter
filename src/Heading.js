@@ -1,5 +1,8 @@
 class Heading {
   constructor(el) {
+    if(el.nodeType === 1) {
+      el = el.firstChild
+    }
     const value = el.data
     const reg = /^#+/
     const match = value ? value.match(reg) : null

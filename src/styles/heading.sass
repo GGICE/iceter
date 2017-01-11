@@ -1,46 +1,47 @@
 @import "colors"
 
-[md-type="#"]
-  font-size: 30px
+%base-hd
   font-weight: 700
 
   &::before
-    content: 'h1'
     font-size: 14px
     color: $unimportant
+    position: relative
+    margin-left: -25px
+    margin-right: 10px
+    font-weight: 300
+
+[md-type="#"]
+  @extend %base-hd
+  font-size: 30px
+
+  &::before
+    content: 'H1'
 
 [md-type="##"]
+  @extend %base-hd
   font-size: 24px
-  font-weight: 700
 
   &::before
-    content: 'h2'
-    font-size: 14px
-    color: $unimportant
+    content: 'H2'
 
 [md-type="###"]
+  @extend %base-hd
   font-size: 21px
-  font-weight: 700
 
   &::before
-    content: 'h3'
-    font-size: 14px
-    color: $unimportant
+    content: 'H3'
 
 [md-type="####"]
+  @extend %base-hd
   font-size: 17px
-  font-weight: 700
 
   &::before
-    content: 'h4'
-    font-size: 14px
-    color: $unimportant
+    content: 'H4'
 
 [md-type="#####"]
+  @extend %base-hd
   font-size: 14px
-  font-weight: 700
 
   &::before
-    content: 'h5'
-    font-size: 14px
-    color: $unimportant
+    content: 'H5'
