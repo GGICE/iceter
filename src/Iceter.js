@@ -19,13 +19,15 @@ class Iceter {
   }
 
   _initEl() {
-    var editorWrap = document.createElement('div')
-
-    editorWrap.className = 'editor-wrap'
-    editorWrap.setAttribute('contenteditable', true)
-    editorWrap.innerHTML = '<div>享受书写！</div>'
-    this.El.appendChild(editorWrap)
-    this.editorEl = this.El.querySelector('.editor-wrap')
+    var html = `
+      <div class="editor-wrap">
+        <div class="editor" contenteditable="true">
+          <div>享受书写！</div>
+        </div>
+      </div>
+    `
+    this.El.innerHTML = html
+    this.editorEl = this.El.querySelector('.editor')
     this.editorEl.focus()
     this._buildEvent()
   }
