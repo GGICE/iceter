@@ -7,7 +7,6 @@ class Heading {
     const match = value ? value.match(reg) : null
 
     if(match && match[0]) {
-      //TD 需要封装selection
       document.execCommand('formatBlock', false, 'H' + match[0].length)
       newEl = selection.getFocusNode()
       range = selection.getRange()
