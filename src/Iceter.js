@@ -1,5 +1,6 @@
 import './styles/main.sass'
 import Heading from './Heading'
+import Hr from './Hr'
 import Selection from './Selection'
 
 class Iceter {
@@ -69,6 +70,10 @@ class Iceter {
     //   el.removeAttribute('md-type')
     // }
     new Heading({
+      el,
+      selection: this.selection
+    })
+    new Hr({
       el,
       selection: this.selection
     })

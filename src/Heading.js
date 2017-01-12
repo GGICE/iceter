@@ -1,10 +1,21 @@
+/**
+* 识别 # 开头的 1-5级标题
+* 如: ### 这是标题三
+**/
+
 class Heading {
   constructor(options) {
-    var { selection, el } = options
-    var newEl, range
+    this.selection = options.selection
+    this.el = options.el
+    this.render()
+  }
+
+  render() {
+    var { selection, el } = this
     const value = el.data
     const reg = /^#+/
     const match = value ? value.match(reg) : null
+    var newEl, range
 
     if(match && match[0]) {
       document.execCommand('formatBlock', false, 'H' + match[0].length)

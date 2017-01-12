@@ -21,6 +21,10 @@ class Selection {
     selection.addRange(range)
   }
 
+  createRange() {
+    return document.createRange()
+  }
+
 }
 
 export default Selection
