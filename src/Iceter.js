@@ -1,7 +1,7 @@
 import './styles/main.sass'
-import Heading from './Heading'
-import Hr from './Hr'
-import Selection from './Selection'
+import Heading from './blocks/Heading'
+import Hr from './blocks/Hr'
+import Selection from './selection/Selection'
 
 class Iceter {
   constructor(options) {

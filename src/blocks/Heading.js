@@ -2,12 +2,11 @@
 * 识别 # 开头的 1-5级标题
 * 如: ### 这是标题三
 **/
+import Block from './Block'
 
-class Heading {
+class Heading extends Block {
   constructor(options) {
-    this.selection = options.selection
-    this.el = options.el
-    this.render()
+    super(options)
   }
 
   render() {

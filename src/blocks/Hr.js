@@ -1,9 +1,9 @@
 /**
 * 识别 ***
 **/
-import Heading from './Heading'
+import Block from './Block'
 
-class Hr extends Heading {
+class Hr extends Block {
   constructor(options) {
     super(options)
   }
