@@ -1,5 +1,5 @@
 /**
-* 识别 ***
+* 识别 *** 为分隔符
 **/
 import Block from './Block'
 

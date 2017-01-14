@@ -42,10 +42,23 @@ class Iceter {
       (e) => this._onSelectionChange(e))
   }
 
-  _onKeyDown() {
+  _onKeyDown(e) {
+    this._el2Mk(e)
   }
 
   _onKeyUp(e) {
+    //Do something
+  }
+
+  _onKeyEnter() {
+    //Do something
+  }
+
+  _onSelectionChange() {
+    //Do something
+  }
+
+  _el2Mk(e) {
     const key = e.code
     var el = this.selection.getFocusNode()
 
@@ -53,22 +66,12 @@ class Iceter {
       return this._parse(el)
     }
     if(key === 'Enter') {
-      return this._onKeyEnter()
+      return this._parse(el)
     }
-  }
 
-  _onKeyEnter() {
-
-  }
-
-  _onSelectionChange() {
-    //Do something
   }
 
   _parse(el) {
-    // if(!el.nodeValue) {
-    //   el.removeAttribute('md-type')
-    // }
     new Heading({
       el,
       selection: this.selection
