@@ -11,21 +11,20 @@ class Hr extends Block {
   render() {
     var { selection, el } = this
     const value = el.data
-    const reg = /^\*\*\*/
+    const reg = /^\*\*\*$/
     const match = value ? value.match(reg) : null
-    var range
+    var newEl
 
     if(match && match[0]) {
       el.matched = true
-      range = selection.createRange()
-      range.setStart(el.parentNode, 0)
-      range.setEnd(el.parentNode, 1)
-      selection.setRange(range)
-      document.execCommand('insertParagraph', false)
-      // document.execCommand('insertHorizontalRule')
-      // document.execCommand('insertParagraph')
-      // document.execCommand('insertHTML', false,
-      //   '<hr mk-type="***"></hr>')
+      selection.setRangeByEl({
+        startEl: el.parentNode,
+        startOffset: 0,
+        endOffset: 1
+      })
+      document.execCommand('insertHorizontalRule', false, '')
+      newEl = selection.getFocusNode()
+      newEl.setAttribute('md-type', '***')
     }
   }
 }

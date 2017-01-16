@@ -54,20 +54,18 @@ class Iceter {
     var el = this.selection.getFocusNode()
 
     if(key === 'Space') {
-      e.preventDefault()
+      //尽量不重写space
+      //TODO 去除space多余的空格
       return this._onKeySpace(el)
     }
     if(key === 'Enter') {
-      //尽量不重写enter，md-type 标志位换用无法继承标记
+      //尽量不重写enter
       return this._parse(el)
     }
   }
 
   _onKeySpace(el) {
     this._parse(el)
-    if(!el.matched) {
-      document.execCommand('insertHTML', false, '&nbsp;')
-    }
   }
 
   _parse(el) {
