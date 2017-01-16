@@ -16,12 +16,16 @@ class Hr extends Block {
     var range
 
     if(match && match[0]) {
+      el.matched = true
       range = selection.createRange()
-      range.setStart(el.parentNode.firstChild, 0)
-      range.setEnd(el.parentNode.firstChild, match[0].length)
+      range.setStart(el.parentNode, 0)
+      range.setEnd(el.parentNode, 1)
       selection.setRange(range)
-      document.execCommand('insertHorizontalRule')
-      document.execCommand('insertParagraph')
+      document.execCommand('insertParagraph', false)
+      // document.execCommand('insertHorizontalRule')
+      // document.execCommand('insertParagraph')
+      // document.execCommand('insertHTML', false,
+      //   '<hr mk-type="***"></hr>')
     }
   }
 }

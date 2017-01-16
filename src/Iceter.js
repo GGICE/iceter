@@ -37,21 +37,12 @@ class Iceter {
 
   _buildEvent() {
     this.editorEl.addEventListener('keydown', (e) => this._onKeyDown(e))
-    this.editorEl.addEventListener('keyup', (e) => this._onKeyUp(e))
     document.addEventListener('selectionchange',
       (e) => this._onSelectionChange(e))
   }
 
   _onKeyDown(e) {
     this._el2Mk(e)
-  }
-
-  _onKeyUp(e) {
-    //Do something
-  }
-
-  _onKeyEnter() {
-    //Do something
   }
 
   _onSelectionChange() {
@@ -63,12 +54,20 @@ class Iceter {
     var el = this.selection.getFocusNode()
 
     if(key === 'Space') {
-      return this._parse(el)
+      e.preventDefault()
+      return this._onKeySpace(el)
     }
     if(key === 'Enter') {
+      //尽量不重写enter，md-type 标志位换用无法继承标记
       return this._parse(el)
     }
+  }
 
+  _onKeySpace(el) {
+    this._parse(el)
+    if(!el.matched) {
+      document.execCommand('insertHTML', false, '&nbsp;')
+    }
   }
 
   _parse(el) {
@@ -81,7 +80,6 @@ class Iceter {
       selection: this.selection
     })
   }
-
 }
 
 window.Iceter = Iceter

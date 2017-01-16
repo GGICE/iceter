@@ -17,11 +17,12 @@ class Heading extends Block {
     var newEl, range
 
     if(match && match[0]) {
+      el.matched = true
       document.execCommand('formatBlock', false, 'H' + match[0].length)
       newEl = selection.getFocusNode()
       range = selection.getRange()
       newEl.parentNode.setAttribute('md-type', match[0])
-      newEl.nodeValue = value.replace(/^#+/, '').replace(/ | /, '') // eslint-disable-line
+      newEl.nodeValue = value.replace(reg, '').replace(/ | /, '') // eslint-disable-line
       selection.setRange(range)
     }
   }
