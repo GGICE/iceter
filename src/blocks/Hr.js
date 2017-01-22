@@ -11,7 +11,7 @@ class Hr extends Block {
   render() {
     var { selection, el } = this
     const value = el.data
-    const reg = /^\*\*\*$/
+    const reg = /^\*\*\*( | )$/ // eslint-disable-line
     const match = value ? value.match(reg) : null
     var newEl
 

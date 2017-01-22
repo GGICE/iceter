@@ -37,11 +37,16 @@ class Iceter {
 
   _buildEvent() {
     this.editorEl.addEventListener('keydown', (e) => this._onKeyDown(e))
+    this.editorEl.addEventListener('keyup', (e) => this._onKeyUp(e))
     document.addEventListener('selectionchange',
       (e) => this._onSelectionChange(e))
   }
 
   _onKeyDown(e) {
+    // this._el2Mk(e)
+  }
+
+  _onKeyUp(e) {
     this._el2Mk(e)
   }
 
@@ -60,7 +65,7 @@ class Iceter {
     }
     if(key === 'Enter') {
       //尽量不重写enter
-      return this._parse(el)
+      return this._parse(el.previousSibling.firstChild)
     }
   }
 
@@ -69,6 +74,7 @@ class Iceter {
   }
 
   _parse(el) {
+    console.log(el)
     new Heading({
       el,
       selection: this.selection
