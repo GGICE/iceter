@@ -1,6 +1,7 @@
 import './styles/main.sass'
 import Heading from './blocks/Heading'
 import Hr from './blocks/Hr'
+import List from './blocks/List'
 import Selection from './selection/Selection'
 
 class Iceter {
@@ -74,12 +75,15 @@ class Iceter {
   }
 
   _parse(el) {
-    console.log(el)
     new Heading({
       el,
       selection: this.selection
     })
     new Hr({
+      el,
+      selection: this.selection
+    })
+    new List({
       el,
       selection: this.selection
     })
