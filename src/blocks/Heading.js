@@ -12,7 +12,7 @@ class Heading extends Block {
   render() {
     var { selection, el } = this
     const value = el.data
-    const reg = /^#+( | )$/ // eslint-disable-line
+    const reg = /^#+( | )/ // eslint-disable-line
     const regHD = /^#+/
     var match = value ? value.match(reg) : null
     var newEl, range

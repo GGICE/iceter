@@ -12,8 +12,8 @@ class Ul extends Block {
   render() {
     var { selection, el } = this
     const value = el.data
-    const regUn = /^(\*|-)+( | )$/ // eslint-disable-line
-    const regOr = /^\d\.+( | )$/ // eslint-disable-line
+    const regUn = /^(\*|-)+( | )/ // eslint-disable-line
+    const regOr = /^\d\.+( | )/ // eslint-disable-line
     var type, match
 
     if(regOr.test(value)) {
