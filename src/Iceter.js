@@ -9,11 +9,12 @@ class Iceter {
     const { el } = options
 
     this.El = document.querySelector(el)
-    this.init()
   }
 
-  init() {
-    this._initEl()
+  init(options) {
+    const { content } = options
+
+    this._initEl(content)
     this.selection = new Selection(window.getSelection())
   }
 
@@ -21,11 +22,17 @@ class Iceter {
     return this.selection.getRange()
   }
 
-  _initEl() {
+  setContent(content) {
+    this.init({
+      content
+    })
+  }
+
+  _initEl(content) {
     var html = `
       <div class="editor-wrap">
         <div class="editor" contenteditable="true">
-          <div>享受书写！</div>
+          ${content}
         </div>
       </div>
     `
@@ -35,38 +42,35 @@ class Iceter {
     this._buildEvent()
   }
 
-
   _buildEvent() {
     this.editorEl.addEventListener('keydown', (e) => this._onKeyDown(e))
     this.editorEl.addEventListener('keyup', (e) => this._onKeyUp(e))
-    document.addEventListener('selectionchange',
-      (e) => this._onSelectionChange(e))
+    document.addEventListener('selectionchange', (e) => this._onSelectionChange(e))
   }
 
   _onKeyDown(e) {
-    // this._el2Mk(e)
+    this._mk2El(e)
   }
 
   _onKeyUp(e) {
-    this._el2Mk(e)
+    //Do nothing
   }
 
   _onSelectionChange() {
     //Do something
   }
 
-  _el2Mk(e) {
+  _mk2El(e) {
     const key = e.code
     var el = this.selection.getFocusNode()
 
     if(key === 'Space') {
       //尽量不重写space
       //TODO 去除space多余的空格
-      return this._onKeySpace(el)
-    }
-    if(key === 'Enter') {
-      //尽量不重写enter
-      return this._parse(el.previousSibling.firstChild)
+      return this._onKeySpace({
+        el,
+        e
+      })
     }
   }
 
@@ -74,19 +78,17 @@ class Iceter {
     this._parse(el)
   }
 
-  _parse(el) {
-    new Heading({
-      el,
+  _parse(options) {
+    new Heading(Object.assign({
       selection: this.selection
-    })
-    new Hr({
-      el,
+    }, options))
+    new Hr(Object.assign({
       selection: this.selection
-    })
-    new List({
-      el,
+    }, options))
+    new List(Object.assign({
       selection: this.selection
-    })
+    }, options))
+    options.el.matched = false
   }
 }
 

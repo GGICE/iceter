@@ -9,22 +9,22 @@ class Hr extends Block {
   }
 
   render() {
+    if(!this.isDo()) {
+      return
+    }
     var { selection, el } = this
     const value = el.data
-    const reg = /^\*\*\*( | )/ // eslint-disable-line
+    const reg = /^\*\*\*$/ // eslint-disable-line
     const match = value ? value.match(reg) : null
-    var newEl
 
     if(match && match[0]) {
-      el.matched = true
+      this.matched()
       selection.setRangeByEl({
         startEl: el.parentNode,
         startOffset: 0,
         endOffset: 1
       })
       document.execCommand('insertHorizontalRule', false, '')
-      newEl = selection.getFocusNode()
-      newEl.setAttribute('md-type', '***')
     }
   }
 }

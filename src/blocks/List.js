@@ -10,18 +10,23 @@ class Ul extends Block {
   }
 
   render() {
+    if(!this.isDo()){
+      return
+    }
     var { selection, el } = this
     const value = el.data
-    const regUn = /^(\*|-)+( | )/ // eslint-disable-line
-    const regOr = /^\d\.+( | )/ // eslint-disable-line
-    var type, match
+    const regUn = /^(\*|-)$/ // eslint-disable-line
+    const regOr = /^\d\.$/ // eslint-disable-line
+    var type, match, newEl
 
     if(regOr.test(value)) {
+      this.matched()
       match = value.match(regOr)
       type = 'or'
     }
 
     if(regUn.test(value)) {
+      this.matched()
       match = value.match(regUn)
       type = 'un'
     }
@@ -33,11 +38,16 @@ class Ul extends Block {
         endOffset: 1
       })
       if(type === 'or') {
-        document.execCommand('insertOrderedList')
+        document.execCommand('insertOrderedList', false)
       }
       if(type === 'un') {
-        document.execCommand('insertUnorderedList')
+        document.execCommand('insertUnorderedList', false)
       }
+      newEl = selection.getFocusNode()
+      newEl.nodeValue = null
+      selection.setRangeByEl({
+        startEl: newEl.parentNode
+      })
     }
   }
 }

@@ -1,5 +1,5 @@
 /**
-* 识别 # 开头的 1-5级标题
+* 识别 # 开头的 1-5级标题, 不识别混合
 * 如: ### 这是标题三
 **/
 import Block from './Block'
@@ -10,16 +10,17 @@ class Heading extends Block {
   }
 
   render() {
-    var { selection, el } = this
+    if(!this.isDo()){
+      return
+    }
+    const { selection, el } = this
     const value = el.data
-    const reg = /^#+( | )/ // eslint-disable-line
-    const regHD = /^#+/
+    const reg = /^#+$/ // eslint-disable-line
     var match = value ? value.match(reg) : null
-    var newEl, range
+    var newEl
 
     if(match && match[0]) {
-      match = value.match(regHD)
-      el.matched = true
+      this.matched()
       selection.setRangeByEl({
         startEl: el.parentNode,
         startOffset: 0,
@@ -27,10 +28,10 @@ class Heading extends Block {
       })
       document.execCommand('formatBlock', false, 'H' + match[0].length)
       newEl = selection.getFocusNode()
-      range = selection.getRange()
-      newEl.parentNode.setAttribute('md-type', match[0])
-      newEl.nodeValue = value.replace(reg, '').replace(/ | /, '') // eslint-disable-line
-      selection.setRange(range)
+      newEl.nodeValue = null
+      selection.setRangeByEl({
+        startEl: newEl.parentNode
+      })
     }
   }
 }
