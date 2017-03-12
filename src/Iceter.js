@@ -3,6 +3,10 @@ import Heading from './blocks/Heading'
 import Hr from './blocks/Hr'
 import List from './blocks/List'
 import Selection from './selection/Selection'
+import Bold from './inline/Bold'
+import Italic from './inline/Italic'
+import Underline from './inline/Underline'
+import Strike from './inline/Strike'
 
 class Iceter {
   constructor(options) {
@@ -53,7 +57,7 @@ class Iceter {
   }
 
   _onKeyUp(e) {
-    //Do nothing
+    this._mk2ElInline(e)
   }
 
   _onSelectionChange() {
@@ -67,29 +71,45 @@ class Iceter {
     if(key === 'Space') {
       //尽量不重写space
       //TODO 去除space多余的空格
-      return this._onKeySpace({
+      return this._parse({
         el,
         e
       })
     }
   }
 
-  _onKeySpace(el) {
-    this._parse(el)
-  }
-
   _parse(options) {
-    new Heading(Object.assign({
+    const newOptions = Object.assign({
       selection: this.selection
-    }, options))
-    new Hr(Object.assign({
-      selection: this.selection
-    }, options))
-    new List(Object.assign({
-      selection: this.selection
-    }, options))
+    }, options)
+
+    new Heading(newOptions)
+    new Hr(newOptions)
+    new List(newOptions)
     options.el.matched = false
   }
+
+  _mk2ElInline(e) {
+    const key = e.code
+    const el = this.selection.getFocusNode()
+
+    return this._parseInline({
+      el,
+      e
+    })
+  }
+
+  _parseInline(options) {
+    const newOptions = Object.assign({
+      selection: this.selection
+    }, options)
+    new Bold(newOptions)
+    new Italic(newOptions)
+    new Strike(newOptions)
+    new Underline(newOptions)
+    options.el.matched = false
+  }
+
 }
 
 window.Iceter = Iceter
