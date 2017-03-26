@@ -32,6 +32,11 @@ class Iceter {
     })
   }
 
+  getContent() {
+    return this.El.innerHTML.replace(/\r|\f|\n/g, '')
+               .replace(/( )+/g, ' ')
+  }
+
   _initEl(content) {
     var html = `
       <div class="editor-wrap">
