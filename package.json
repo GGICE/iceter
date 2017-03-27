@@ -1,33 +1,49 @@
 {
   "name": "iceter",
   "version": "0.0.1",
-  "private": true,
+  "publish": true,
   "devDependencies": {
-    "webpack": "1.13.3",
-    "webpack-dev-server": "^1.14.1",
-    "eslint": "^3.7.1",
-    "pre-commit": "^1.1.3",
     "babel-core": "^6.5.2",
-    "babel-preset-env": "^1.1.6",
     "babel-loader": "^6.2.4",
-    "sass-loader": "^4.1.1",
-    "node-sass": "^4.2.0",
-    "style-loader": "^0.13.1",
+    "babel-preset-env": "^1.1.6",
     "css-loader": "^0.26.1",
-    "extract-text-webpack-plugin": "^1.0.1"
+    "eslint": "^3.7.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^4.5.1",
+    "pre-commit": "^1.1.3",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1",
+    "webpack": "1.13.3",
+    "webpack-dev-server": "^1.14.1"
   },
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "scripts": {
     "build": "webpack -p --progress --profile --colors",
     "dev": "webpack-dev-server --hot --progress --profile --colors",
-    "lintJs": "./node_modules/.bin/eslint ./src/**/*.js",
+    "lintJs": "eslint ./src/**/*.js",
     "gitAdd": "git add ."
   },
   "pre-commit": [
     "lintJs",
     "build",
     "gitAdd"
-  ]
+  ],
+  "description": "A editor base on browser rich text editor Api.",
+  "main": "dist/Iceter.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GGICE/iceter.git"
+  },
+  "keywords": [
+    "editor"
+  ],
+  "author": "GGICE",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GGICE/iceter/issues"
+  },
+  "homepage": "https://github.com/GGICE/iceter#readme"
 }
