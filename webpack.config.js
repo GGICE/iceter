@@ -1,5 +1,3 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin")
-
 module.exports = {
     entry: {
       Iceter: './src/Iceter'
@@ -9,11 +7,11 @@ module.exports = {
         { 
           test: /\.js$/, 
           exclude: /node_modules/, 
-          loader: "babel-loader" 
+          loader: 'babel-loader'
         },
         {
           test: /\.sass$/,
-          loader: ExtractTextPlugin.extract('style', 'css!sass')
+          loaders: ['style', 'css', 'sass']
         },
       ]
     },
@@ -21,8 +19,5 @@ module.exports = {
       path: __dirname,
       filename: "./dist/[name].js",
       libraryTarget: "umd"
-    },
-    plugins: [
-      new ExtractTextPlugin("dist/styles.css")
-    ]
+    }
 };
