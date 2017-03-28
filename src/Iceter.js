@@ -39,14 +39,14 @@ class Iceter {
 
   _initEl(content) {
     var html = `
-      <div class="editor-wrap">
-        <div class="editor" contenteditable="true">
+      <div class="i-editor-wrap">
+        <div class="i-editor" contenteditable="true">
           ${content}
         </div>
       </div>
     `
     this.El.innerHTML = html
-    this.editorEl = this.El.querySelector('.editor')
+    this.editorEl = this.El.querySelector('.i-editor')
     this.editorEl.focus()
     this._buildEvent()
   }
@@ -117,4 +117,4 @@ class Iceter {
 
 }
 
-window.Iceter = Iceter
+export default Iceter

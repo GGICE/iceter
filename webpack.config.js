@@ -4,7 +4,6 @@ module.exports = {
     entry: {
       Iceter: './src/Iceter'
     },
-    devtool: 'source-map',
     module: {
       loaders: [
         { 
@@ -21,16 +20,9 @@ module.exports = {
     output: {
       path: __dirname,
       filename: "./dist/[name].js",
-      libraryTarget: "commonjs2"
+      libraryTarget: "umd"
     },
     plugins: [
       new ExtractTextPlugin("dist/styles.css")
-    ],
-    devServer: {
-		  contentBase: "./",
-      host: '0.0.0.0',
-			hot: true,
-			inline: true,
-			port: 9213
-		}
+    ]
 };
