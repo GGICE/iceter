@@ -33,8 +33,9 @@ class Iceter {
   }
 
   getContent() {
-    return this.El.innerHTML.replace(/\r|\f|\n/g, '')
-               .replace(/( )+/g, ' ')
+    var el = this.El.querySelector('.i-editor')
+    return el.innerHTML.replace(/\r|\f|\n/g, '')
+            .replace(/( )+/g, ' ')
   }
 
   _initEl(content) {
