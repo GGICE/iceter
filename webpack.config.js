@@ -1,6 +1,6 @@
 module.exports = {
     entry: {
-      Iceter: './src/Iceter'
+      Iceter: './src/Iceter',
     },
     module: {
       loaders: [
