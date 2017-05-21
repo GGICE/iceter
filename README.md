@@ -21,7 +21,7 @@ import (use babel)
 
     import Iceter from 'iceter'
 
-use
+use
 
     var editor = new Iceter({
       el: '.edit'
