@@ -13,12 +13,13 @@ class Iceter {
     const { el } = options
 
     this.El = document.querySelector(el)
+    this.inputing = false
   }
 
   init(options) {
     const { content } = options
 
-    this._initEl(content)
+    this.initEl(content)
     this.selection = new Selection(window.getSelection())
   }
 
@@ -38,7 +39,7 @@ class Iceter {
             .replace(/( )+/g, ' ')
   }
 
-  _initEl(content) {
+  initEl(content) {
     var html = `
       <div class="i-editor-wrap">
         <div class="i-editor" contenteditable="true">
@@ -49,28 +50,38 @@ class Iceter {
     this.El.innerHTML = html
     this.editorEl = this.El.querySelector('.i-editor')
     this.editorEl.focus()
-    this._buildEvent()
+    this.buildEvent()
   }
 
-  _buildEvent() {
-    this.editorEl.addEventListener('keydown', (e) => this._onKeyDown(e))
-    this.editorEl.addEventListener('keyup', (e) => this._onKeyUp(e))
-    document.addEventListener('selectionchange', (e) => this._onSelectionChange(e))
+  buildEvent() {
+    this.editorEl.addEventListener('keydown', (e) => this.onKeyDown(e))
+    this.editorEl.addEventListener('keyup', (e) => this.onKeyUp(e))
+    this.editorEl.addEventListener('compositionend', (e) => this.onCompositionend(e))
+    this.editorEl.addEventListener('compositionstart', (e) => this.onCompositionstart(e))
+    document.addEventListener('selectionchange', (e) => this.onSelectionChange(e))
   }
 
-  _onKeyDown(e) {
-    this._mk2El(e)
+  onKeyDown(e) {
+    this.mk2El(e)
   }
 
-  _onKeyUp(e) {
-    this._mk2ElInline(e)
+  onKeyUp(e) {
+    this.mk2ElInline(e)
   }
 
-  _onSelectionChange() {
+  onCompositionend() {
+    this.inputing = false
+  }
+
+  onCompositionstart() {
+    this.inputing = true
+  }
+
+  onSelectionChange() {
     //Do something
   }
 
-  _mk2El(e) {
+  mk2El(e) {
     const key = e.code
     var el = this.selection.getFocusNode()
 
@@ -95,17 +106,23 @@ class Iceter {
     options.el.matched = false
   }
 
-  _mk2ElInline(e) {
+  mk2ElInline(e) {
     const key = e.code
     const el = this.selection.getFocusNode()
 
-    return this._parseInline({
+    if(key === 'Backspace' ||
+       key === 'ArrowRight' ||
+       key === 'ArrowLeft' ||
+      this.inputing) {
+      return
+    }
+    return this.parseInline({
       el,
       e
     })
   }
 
-  _parseInline(options) {
+  parseInline(options) {
     const newOptions = Object.assign({
       selection: this.selection
     }, options)
