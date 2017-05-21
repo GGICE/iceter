@@ -1,6 +1,6 @@
 {
   "name": "iceter",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publish": true,
   "devDependencies": {
     "babel-core": "^6.5.2",
