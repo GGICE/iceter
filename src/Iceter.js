@@ -134,10 +134,16 @@ class Iceter {
   }
 
   insertImage(url) {
+    if(!url) {
+      return
+    }
     document.execCommand('insertImage', true, url)
   }
 
   insertUrl(url) {
+    if(!url) {
+      return
+    }
     document.execCommand('createLink', true, url)
   }
 }
