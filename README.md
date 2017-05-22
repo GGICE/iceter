@@ -33,21 +33,21 @@ use
 
 ### insertImage
 
-parameter:
+param:
 
-* url {String}
+* @param {string} url
 
-example:
+example:
  
     editor.insertImage(url)
 
 ### insertUrl
 
-parameter:
+param:
 
-* url {String}
+* @param {string} url
 
-example:
+example:
  
     editor.insertUrl(url)
 
