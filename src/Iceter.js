@@ -133,6 +133,13 @@ class Iceter {
     options.el.matched = false
   }
 
+  insertImage(url) {
+    document.execCommand('insertImage', true, url)
+  }
+
+  insertUrl(url) {
+    document.execCommand('createLink', true, url)
+  }
 }
 
 export default Iceter

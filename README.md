@@ -29,7 +29,25 @@ use
     editor.setContent('')
     editor.getContent()
 
+## APIs:
 
+### insertImage
 
+parameter:
 
+* url {String}
+
+example:
+ 
+    editor.insertImage(url)
+
+### insertUrl
+
+parameter:
+
+* url {String}
+
+example:
+ 
+    editor.insertUrl(url)
 
