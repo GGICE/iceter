@@ -6,7 +6,7 @@ A editor base on browser rich text editor Api.
 
 ## State
 
-Not release version.
+No release version.
 
 ## Todo list
 
