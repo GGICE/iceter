@@ -18,6 +18,7 @@ module.exports = {
     output: {
       path: __dirname,
       filename: "./dist/[name].js",
+      library: "Iceter",
       libraryTarget: "umd"
     }
-};
+};  

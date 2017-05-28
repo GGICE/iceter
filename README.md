@@ -4,14 +4,25 @@ A editor base on browser rich text editor Api.
 
 [Demo](https://ggice.github.io/iceter/)
 
-## DEV:
+## State
+
+Not release version.
+
+## Todo list
+
+- [ ] toMarkdown
+- [ ] fromMarkdown
+- [ ] code block type support
+- [ ] code and link shortcut
+
+## Develop:
 
     yarn install (or npm install)
     // then 
     npm run dev
     //see localhost:9213
 
-## USE：
+## Use:
 
 install
 
