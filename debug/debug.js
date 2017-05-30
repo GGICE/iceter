@@ -5,7 +5,7 @@ import Iceter from "../src/Iceter"
   var editor = new Iceter({
     el: '#app'
   })
-
+  window.editor = editor
   editor.setContent(`
       <h1>桃花源记（节选）</h1><div>朝代：魏晋</div><div>作者：<a href="https://ice.gs/">陶渊明</a><br></div>
       <div><hr>
@@ -32,6 +32,9 @@ import Iceter from "../src/Iceter"
       <div>*斜体</div>
       <div>~下划线</div>
       <div>~~删除线~</div>
+<pre><code>function () { 
+  console.log('hello!')
+}</code></pre>
   `)
 
   menuEl.addEventListener('mousedown', function(e){
