@@ -24,9 +24,15 @@ No release version.
 
 ## Use:
 
+load libs in html
+
+    <script type="text/javascript" src="//cdnjs.xyz/libs/showdown/1.7.1/showdown.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.xyz/libs/to-markdown/3.0.4/to-markdown.min.js"></script>
+
 install
 
     npm install iceter
+
 
 import (use babel)
 
