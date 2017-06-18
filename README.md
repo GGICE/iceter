@@ -10,8 +10,8 @@ No release version.
 
 ## Todo list
 
-- [ ] toMarkdown
-- [ ] fromMarkdown
+- [x] toMarkdown
+- [x] fromMarkdown
 - [ ] code block type support
 - [ ] code and link shortcut
 
@@ -61,4 +61,11 @@ param:
 example:
  
     editor.insertUrl(url)
+
+
+## Additional repositories
+
+[to-markdown](https://github.com/domchristie/to-markdown)
+
+[showdown](https://github.com/showdownjs/showdown)
 

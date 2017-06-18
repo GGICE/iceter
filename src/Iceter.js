@@ -10,33 +10,48 @@ import Strike from './inline/Strike'
 
 class Iceter {
   constructor(options) {
-    const { el } = options
+    const {
+      el
+    } = options
 
     this.El = document.querySelector(el)
     this.inputing = false
   }
 
   init(options) {
-    const { content } = options
+    const {
+      content
+    } = options
 
     this.initEl(content)
     this.selection = new Selection(window.getSelection())
   }
-
   getRange() {
     return this.selection.getRange()
   }
 
   setContent(content) {
+    const converter = new showdown.Converter({
+      omitExtraWLInCodeBlocks: true
+    })
+    console.log(content)
+    console.log(converter.getOptions());
+    console.log(converter.makeHtml(content))
     this.init({
-      content
+      content: converter.makeHtml(content)
     })
   }
 
   getContent() {
     var el = this.El.querySelector('.i-editor')
-    return el.innerHTML.replace(/\r|\f|\n/g, '')
-            .replace(/( )+/g, ' ')
+    return toMarkdown(el.innerHTML, {
+      converters: [{
+        filter: 'div',
+        replacement: function (content) {
+          return content
+        }
+      }]
+    })
   }
 
   initEl(content) {
@@ -85,7 +100,7 @@ class Iceter {
     const key = e.code
     var el = this.selection.getFocusNode()
 
-    if(key === 'Space') {
+    if (key === 'Space') {
       //尽量不重写space
       //TODO 去除space多余的空格
       return this._parse({
@@ -110,9 +125,9 @@ class Iceter {
     const key = e.code
     const el = this.selection.getFocusNode()
 
-    if(key === 'Backspace' ||
-       key === 'ArrowRight' ||
-       key === 'ArrowLeft' ||
+    if (key === 'Backspace' ||
+      key === 'ArrowRight' ||
+      key === 'ArrowLeft' ||
       this.inputing) {
       return
     }
@@ -134,14 +149,14 @@ class Iceter {
   }
 
   insertImage(url) {
-    if(!url) {
+    if (!url) {
       return
     }
     document.execCommand('insertImage', true, url)
   }
 
   insertUrl(url) {
-    if(!url) {
+    if (!url) {
       return
     }
     document.execCommand('createLink', true, url)

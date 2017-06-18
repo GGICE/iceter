@@ -16,7 +16,8 @@
     "webpack": "1.13.3",
     "webpack-dev-server": "^1.14.1"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "scripts": {
     "build": "webpack -p --progress --profile --colors",
     "demo": "webpack -p --config webpack.demo.config.js --progress --profile --colors",
