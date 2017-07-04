@@ -34,9 +34,6 @@ class Iceter {
     const converter = new showdown.Converter({
       omitExtraWLInCodeBlocks: true
     })
-    console.log(content)
-    console.log(converter.getOptions());
-    console.log(converter.makeHtml(content))
     this.init({
       content: converter.makeHtml(content)
     })

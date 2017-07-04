@@ -23,5 +23,11 @@
 
   ul {  
     @extend %baseList;
+    li {
+      &:before {
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
   }
 }
